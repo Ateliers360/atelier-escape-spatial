@@ -1,0 +1,29 @@
+# .gitignore commun Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.env.local
+.ipynb_checkpoints/
+dist/
+*.egg-info/
+models/*.pkl
+output/
+
+# .gitignore Arduino/PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+*.elf
+*.hex
+*.bin
+lib/
+!lib/README
+
+# .gitignore HTML/JS
+node_modules/
+dist/
+.parcel-cache/
+
+# Spécifique à ce projet
