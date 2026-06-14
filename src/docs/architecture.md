@@ -15,6 +15,12 @@ Voici la liste exhaustive des composants à développer :
 * **`FrameCorner`** : Petit élément décoratif aux coins des panneaux pour renforcer l'aspect "interface militaire".
 * **`MonoBadge`** : Badge utilisant une police monospace, fond sombre, texte contrasté pour les étiquettes (ex: `T+ 00:45`).
 
+* **`Card`** : Carte avec une bordure et un fond sombre.
+* **`Button`** : Bouton avec un effet de survol lumineux et un état "disabled" grisé.
+* **`Input`** : Input avec un effet de survol lumineux et un état "focus" avec un halo néon.
+* **`Slider`** : Curseur avec un style néon et un effet de survol lumineux.
+* **`Code`** : Bloc de code avec un fond sombre, une police monospace et un léger effet de surbrillance sur le texte.
+
 ---
 
 ## 2. Le Groupe "Visualisation Data" (Graphiques)
