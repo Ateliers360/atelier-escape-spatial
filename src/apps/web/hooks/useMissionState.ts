@@ -1,0 +1,1 @@
+// Gestion état global
