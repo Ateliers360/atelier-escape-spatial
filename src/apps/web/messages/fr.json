@@ -1,0 +1,27 @@
+{
+  "Index": {
+    "mission_id": "IDENTIFIANT MISSION",
+    "welcome_title": "CENTRE DE CONTRÔLE LUNAIRE",
+    "mission_description": "Vous êtes en phase finale d'approche. Coordonnez vos efforts pour assurer un alunissage sécurisé sur la base Tranquillity.",
+    "live_telemetry": "TÉLÉMÉTRIE EN DIRECT",
+    "active_incidents": "ALERTES SYSTÈME",
+    "no_incidents": "Tous les systèmes sont opérationnels.",
+    "incidents_detected": "INCIDENTS DÉTECTÉS",
+    "station_control_title": "CONTRÔLE MISSION",
+    "station_engineering_title": "INGÉNIERIE",
+    "station_orbital_title": "NAVIGATION",
+    "station_rover_title": "PILOTAGE ROVER"
+  },
+  "Common": {
+    "join_station": "REJOINDRE LE POSTE",
+    "back": "RETOUR"
+  },
+  "MissionControl": {
+    "incident_detected": "Anomalie détectée sur le module",
+    "incident_fuel_leak": "Fuite de carburant détectée sur le réservoir B",
+    "incident_comm_blackout": "Interférences électromagnétiques - Perte de liaison",
+    "phase_1_start": "Séquence de briefing initialisée",
+    "phase_6_start": "Début des simulations d'alunissage",
+    "proximity_warning": "ATTITUDE CRITIQUE : Vérifiez l'altimètre"
+  }
+}

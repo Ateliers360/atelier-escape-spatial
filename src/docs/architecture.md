@@ -67,7 +67,14 @@ Voici la liste exhaustive des composants à développer :
 * **`EnvironmentalSensors`** : Groupe de petits afficheurs digitaux (Température sol, Radiation, Luminosité).
 * **`NavigationConsole`** : Groupe de boutons directionnels (D-Pad) envoyant des commandes au serveur.
 
-#### E. Instruction Hub (Admin)
+#### E. Security & Logistics
+
+* **`SafetyStatusBadge`** : Badge avec un code couleur (SAFE, CAUTION, DANGER) et une icône correspondante.
+* **`ResourceTracker`** : Tableau listant les ressources critiques (O2, Eau, Nourriture) avec des barres de progression et des alertes de seuil.
+* **`EmergencyContacts`** : Liste de contacts d'urgence avec des boutons d'appel rapide (simulés).
+* **`SafetyChecklist`** : Liste de contrôle pré-séance avec des cases à cocher et un bouton de validation.
+
+#### F. Instruction Hub (Admin)
 
 * **`TeamControlCenter`** : Liste des équipes avec boutons de "Force Win", "Trigger Incident", ou "Mute".
 * **`ScenarioMaster`** : Sélecteur d'incidents prédéfinis (Panne moteur, Fuite O2, etc.) avec bouton d'envoi global.
