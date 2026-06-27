@@ -26,12 +26,11 @@
  * |__________________________________|_____________________________________________|
  *
  */
-import { CyberPanel } from '@repo/ui/CyberPanel';
 import { TeamControlCenter } from '../../../../components/instructor-hub/TeamControlCenter';
 import { ScenarioMaster } from '../../../../components/instructor-hub/ScenarioMaster';
 import { EventHistory } from '../../../../components/instructor-hub/EventHistory';
 import { Users, LayoutGrid, ClipboardList, Settings } from 'lucide-react';
-import { Button } from '@repo/ui/Button';
+import { Button, CyberPanel } from '@repo/ui';
 
 export default function InstructorHub() {
   return (

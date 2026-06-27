@@ -1,44 +1,70 @@
-// Moteur du jeu (Logique de base, gestion des états, etc...)
-// Le "Tick" (Calcul altitude/fuel par sec)
-  import { Server } from "socket.io";
-  import { calculateNextState } from "./physics";
-  import { TelemetryData } from "../socket/events";
-  import { db } from '@repo/database/client';
-  import { teams, sessions } from '@repo/database/schema';
-  import { eq } from 'drizzle-orm';
+// apps/server/src/game/engine.ts
+import { Server } from "socket.io";
+import { calculateNextState } from "./physics";
+import { TelemetryData, ServerToClientEvents, ClientToServerEvents } from "../socket/events";
+import { db, teams, sessions } from "@repo/database"; // package DB
+import { eq } from "drizzle-orm";
 
-  // Stockage en mémoire des sessions actives
-  const activeSessions = new Map<string, {
-    telemetry: TelemetryData;
-    thrust: number;
-  }>();
+interface SessionState {
+  telemetry: TelemetryData;
+  thrust: number;
+}
 
-  export const useGameEngine = (io: Server) => {
-    const TICK_RATE = 100; // 10Hz pour une fluidité optimale
-    const dt = TICK_RATE / 1000;
+const activeSessions = new Map<string, SessionState>();
 
-    setInterval(() => {
-      activeSessions.forEach((state, sessionId) => {
-        if (state.telemetry.status === 'CRASHED' || state.telemetry.status === 'LANDED') return;
+export const useGameEngine = (io: Server<ClientToServerEvents, ServerToClientEvents>) => {
+  const TICK_RATE = 200; // 5 mises à jour par seconde (compromis fluidité/perf)
+  const dt = TICK_RATE / 1000;
 
-        const nextTelemetry = calculateNextState(state.telemetry, state.thrust, dt);
-        state.telemetry = nextTelemetry;
+  setInterval(async () => {
+    for (const [sessionId, state] of activeSessions.entries()) {
+      if (state.telemetry.status === 'LANDED' || state.telemetry.status === 'CRASHED') {
+        // Mission terminée : On enregistre en DB
+        await finalizeMission(sessionId, state);
+        activeSessions.delete(sessionId);
+        continue;
+      }
 
-        // Broadcast à la room de la session
-        io.to(sessionId).emit("telemetry_update", nextTelemetry);
-      });
-    }, TICK_RATE);
-  };
+      // Calcul du nouvel état
+      state.telemetry = calculateNextState(state.telemetry, state.thrust, dt);
 
-  // Fonctions utilitaires pour manipuler les sessions
-  export const initSession = (id: string) => {
-    activeSessions.set(id, {
-      telemetry: { altitude: 15000, velocity: 500, fuel: 100, oxygen: 100, status: 'NOMINAL' },
-      thrust: 0
-    });
-  };
+      // Envoi au frontend via la room de la session
+      io.to(sessionId).emit("telemetry_update", state.telemetry);
+    }
+  }, TICK_RATE);
+};
 
-  export const updateThrust = (id: string, power: number) => {
-    const session = activeSessions.get(id);
-    if (session) session.thrust = power;
-  };
+// Connexion DB : Sauvegarde du score
+async function finalizeMission(sessionId: string, state: SessionState) {
+  const score = state.telemetry.status === 'LANDED'
+    ? Math.round(state.telemetry.fuel * 100)
+    : 0;
+
+  try {
+    // 1. Mettre à jour le statut de la session
+    await db.update(sessions)
+      .set({ status: 'FINISHED', endTime: new Date() })
+      .where(eq(sessions.id, sessionId));
+
+    // 2. Mettre à jour le score des équipes
+    await db.update(teams)
+      .set({ score: score })
+      .where(eq(teams.sessionId, sessionId));
+
+    console.log(`Mission ${sessionId} enregistrée. Score: ${score}`);
+  } catch (e) {
+    console.error("Erreur DB lors de la sauvegarde:", e);
+  }
+}
+
+export const initSession = (id: string) => {
+  activeSessions.set(id, {
+    telemetry: { altitude: 12000, velocity: 450, fuel: 100, oxygen: 100, status: 'NOMINAL' },
+    thrust: 0
+  });
+};
+
+export const updateThrust = (id: string, power: number) => {
+  const s = activeSessions.get(id);
+  if (s) s.thrust = power;
+};

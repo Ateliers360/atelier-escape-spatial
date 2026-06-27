@@ -5,9 +5,8 @@
 
 import React from 'react';
 import { useMissionStore } from '../../store/useMissionStore';
-import { Button } from '@repo/ui/button';
+import { Button, BlinkingDot } from '@repo/ui';
 import { Trophy, ZapOff, VolumeX, Activity } from 'lucide-react';
-import { BlinkingDot } from '@repo/ui/BlinkingDot';
 
 export const TeamControlCenter = () => {
   const { teams } = useMissionStore();

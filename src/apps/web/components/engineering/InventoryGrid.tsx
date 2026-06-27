@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { MonoBadge } from '@repo/ui/MonoBadge';
+import { MonoBadge } from '@repo/ui';
 
 const SPARE_PARTS = [
   { id: 'f-10', name: 'Fusible 10A', qty: 4, critical: false },

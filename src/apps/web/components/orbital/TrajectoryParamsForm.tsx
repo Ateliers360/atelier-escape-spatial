@@ -4,8 +4,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Slider } from '@repo/ui/Slider';
-import { Button } from '@repo/ui/button';
+import { Slider, Button } from '@repo/ui';
 import { useTranslations } from 'next-intl';
 
 export const TrajectoryParamsForm = () => {

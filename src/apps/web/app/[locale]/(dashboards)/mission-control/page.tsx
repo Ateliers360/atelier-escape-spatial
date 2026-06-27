@@ -40,7 +40,7 @@
  */
 'use client';
 
-import { CyberPanel } from '@repo/ui/CyberPanel';
+import { CyberPanel, BlinkingDot } from '@repo/ui';
 import { GlobalCountdown } from '../../../../components/mission-control/GlobalCountdown';
 import { MissionTimeline } from '../../../../components/mission-control/MissionTimeline';
 import { IncidentMarquee } from '../../../../components/mission-control/IncidentMarquee';
@@ -48,7 +48,6 @@ import { RadioLogTerminal } from '../../../../components/mission-control/RadioLo
 import { useTranslations } from 'next-intl';
 import { useMissionStore } from '../../../../store/useMissionStore';
 import { Activity, Users, Radio, AlertCircle } from 'lucide-react';
-import { BlinkingDot } from '@repo/ui/BlinkingDot';
 
 export default function MissionControlPage() {
 

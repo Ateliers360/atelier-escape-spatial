@@ -19,6 +19,7 @@ export interface ServerToClientEvents {
   telemetry_update: (data: TelemetryData) => void;
   emergency_alert: (incident: Incident) => void;
   phase_change: (phase: number) => void;
+  mission_finished: (result: { score: number; status: string }) => void;
 }
 
 export interface ClientToServerEvents {

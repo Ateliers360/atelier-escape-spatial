@@ -1,0 +1,27 @@
+{
+  "Index": {
+    "mission_id": "MISSION ID",
+    "welcome_title": "LUNAR CONTROL CENTER",
+    "mission_description": "You are in the final approach phase. Coordinate your efforts to ensure a safe lunar landing at the Tranquillity base.",
+    "live_telemetry": "LIVE TELEMETRY",
+    "active_incidents": "SYSTEM ALERTS",
+    "no_incidents": "All systems are operational.",
+    "incidents_detected": "INCIDENTS DETECTED",
+    "station_control_title": "MISSION CONTROL",
+    "station_engineering_title": "ENGINEERING",
+    "station_orbital_title": "ORBITAL",
+    "station_rover_title": "ROVER PILOTING"
+  },
+  "Common": {
+    "join_station": "JOIN STATION",
+    "back": "BACK"
+  },
+  "MissionControl": {
+    "incident_detected": "Anomaly detected on the module",
+    "incident_fuel_leak": "Fuel leak detected on tank B",
+    "incident_comm_blackout": "Electromagnetic interference - Loss of communication",
+    "phase_1_start": "Initial briefing sequence initialized",
+    "phase_6_start": "Beginning of lunar landing simulations",
+    "proximity_warning": "CRITICAL ATTITUDE: Check the altimeter"
+  }
+}

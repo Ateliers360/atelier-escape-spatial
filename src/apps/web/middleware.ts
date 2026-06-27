@@ -1,17 +1,20 @@
+// Middleware pour gérer l'internationalisation avec next-intl (src/apps/web/middleware.ts)
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({
-  // Liste de toutes les locales supportées
   locales: ['fr', 'en'],
-
-  // Locale par défaut si aucune ne correspond
   defaultLocale: 'fr',
-
-  // Optionnel : ne pas ajouter de préfixe pour la langue par défaut (ex: / au lieu de /fr)
   localePrefix: 'always'
 });
 
 export const config = {
-  // On applique le middleware à toutes les routes sauf API, statics, etc.
-  matcher: ['/((?!api|_next|.*\\..*).*)']
+  // Matcher officiel next-intl : on exclut les dossiers internes et les fichiers
+  matcher: [
+    // Redirige la racine
+    '/',
+    // Gère les locales (fr/en)
+    '/(fr|en)/:path*',
+    // Exclut les fichiers statiques et dossiers internes Next.js
+    '/((?!api|_next|_vercel|.*\\..*).*)'
+  ]
 };

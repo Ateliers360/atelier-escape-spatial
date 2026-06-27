@@ -1,13 +1,15 @@
 // src/apps/server/src/index.ts
 // Entrée (Setup Fastify + Socket.io)
+// apps/server/src/index.ts
 import Fastify from "fastify";
 import socketio from "fastify-socket.io";
 import cors from "@fastify/cors";
-import { Server } from "socket.io";
+import adminRoutes from "./routes/admin";
 import { useGameEngine, initSession, updateThrust } from "./game/engine";
+import { Server } from "socket.io";
 import { ClientToServerEvents, ServerToClientEvents } from "./socket/events";
 
-// 1. Augmentation de module pour fixer l'erreur .io
+// Augmentation de type pour TypeScript
 declare module "fastify" {
   interface FastifyInstance {
     io: Server<ClientToServerEvents, ServerToClientEvents>;
@@ -16,45 +18,48 @@ declare module "fastify" {
 
 const fastify = Fastify({ logger: true });
 
-fastify.register(cors, { origin: "*" });
+// 1. Autoriser le Frontend (Next.js sur le port 3000)
+fastify.register(cors, { origin: "http://localhost:3000" });
+
+// 2. Setup Socket.io
 fastify.register(socketio, {
-  cors: { origin: "*" }
+  cors: { origin: "http://localhost:3000" }
 });
+
+// 3. Enregistrement des routes
+fastify.register(adminRoutes, { prefix: "/admin" });
 
 fastify.ready((err) => {
   if (err) throw err;
 
   fastify.io.on("connection", (socket) => {
-    console.log(`Explorer connected: ${socket.id}`);
+    console.log(`Nouveau terminal connecté: ${socket.id}`);
 
+    // Un dashboard rejoint sa session
     socket.on("join_session", (sessionId) => {
       socket.join(sessionId);
-      initSession(sessionId); // Initialise la physique pour cette session
-      console.log(`Session ${sessionId} initialized`);
+      initSession(sessionId); // On démarre la physique pour lui
+      console.log(`Session ${sessionId} démarrée.`);
     });
 
+    // Contrôle du moteur par l'élève
     socket.on("thrust_control", (power) => {
-      // Trouver la room du socket pour mettre à jour la bonne session
+      // On récupère le sessionId depuis les rooms du socket
       const sessionId = Array.from(socket.rooms)[1];
       if (sessionId) updateThrust(sessionId, power);
     });
 
-    socket.on("disconnect", () => {
-      console.log("Explorer disconnected");
-    });
+    socket.on("disconnect", () => console.log("Déconnexion terminal."));
   });
 
-  // Lancement du moteur de simulation
+  // 4. Lancement du moteur de jeu
   useGameEngine(fastify.io);
 });
 
-const start = async () => {
-  try {
-    await fastify.listen({ port: 3001, host: "0.0.0.0" });
-  } catch (err) {
+// Lancement du serveur
+fastify.listen({ port: 3001, host: "0.0.0.0" }, (err) => {
+  if (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-};
-
-start();
+});

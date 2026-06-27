@@ -27,7 +27,7 @@
  * |__________________________________|_____________________________________________|
  *
  */
-import { CyberPanel } from '@repo/ui/CyberPanel';
+import { CyberPanel } from '@repo/ui';
 import { TacticalMapGrid } from '../../../../components/rover/TacticalMapGrid';
 import { EnvironmentalSensors } from '../../../../components/rover/EnvironmentalSensors';
 import { NavigationConsole } from '../../../../components/rover/NavigationConsole';

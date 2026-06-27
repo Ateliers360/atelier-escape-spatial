@@ -27,7 +27,7 @@
  * |__________________________________|_____________________________________________|
  *
  */
-import { CyberPanel } from '@repo/ui/CyberPanel';
+import { CyberPanel } from '@repo/ui';
 import { OrbitCanvas } from '../../../../components/orbital/OrbitCanvas';
 import { TrajectoryParamsForm } from '../../../../components/orbital/TrajectoryParamsForm';
 import { DeltaVDisplay } from '../../../../components/orbital/DeltaVDisplay';

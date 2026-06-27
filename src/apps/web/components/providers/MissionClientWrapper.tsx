@@ -28,6 +28,7 @@ export default function MissionClientWrapper({ children, messages, locale }: Pro
       {/* Effet CRT Global ici pour qu'il soit sur tous les écrans */}
       <div className="crt-monitor min-h-screen bg-space-950 text-mission-cyan selection:bg-mission-cyan selection:text-space-950">
         <div className="scanline-effect pointer-events-none fixed inset-0 z-50 opacity-10" />
+        UI WRAPPER ACTIVE
         {children}
       </div>
     </NextIntlClientProvider>

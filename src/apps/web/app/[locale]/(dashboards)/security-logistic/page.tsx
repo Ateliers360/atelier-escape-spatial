@@ -25,7 +25,7 @@
  * |__________________________________|_____________________________________________|
  *
  */
-import { CyberPanel } from '@repo/ui/CyberPanel';
+import { CyberPanel } from '@repo/ui';
 import { SafetyStatusBadge } from '../../../../components/security-logistic/SafetyStatusBadge';
 import { ResourceTracker } from '../../../../components/security-logistic/ResourceTracker';
 import { EmergencyContacts } from '../../../../components/security-logistic/EmergencyContacts';

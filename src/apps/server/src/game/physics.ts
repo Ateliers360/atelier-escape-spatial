@@ -1,6 +1,7 @@
 // Physique du jeu (Formules trajectoire, collisions, etc...)
 import { TelemetryData } from "../socket/events";
 
+// Constantes physiques (doivent être ajustables depuis un tableau de bord)
 const GRAVITY = 1.62; // Lune m/s²
 const THRUST_MAX = 4.5; // Puissance max moteur
 const FUEL_CONSUMPTION_RATE = 0.15; // Par seconde à 100%

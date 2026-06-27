@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { PhoneForwarded, Radio } from 'lucide-react';
-import { Button } from '@repo/ui/button';
+import { Button } from '@repo/ui';
 
 const CONTACTS = [
   { id: 'earth', name: 'Huston Control', role: 'Directeur de Vol' },

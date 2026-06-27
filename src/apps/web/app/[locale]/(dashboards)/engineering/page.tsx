@@ -30,7 +30,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Button } from '@repo/ui/button';
 import {
   Cpu,
   Power,
@@ -41,7 +40,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { CyberPanel } from '@repo/ui/CyberPanel';
+import { CyberPanel, Button } from '@repo/ui';
 import { InventoryGrid } from '../../../../components/engineering/InventoryGrid';
 import { ModuleSchematic } from '../../../../components/engineering/ModuleSchematic';
 import { SubsystemCard } from '../../../../components/engineering/SubsystemCard';

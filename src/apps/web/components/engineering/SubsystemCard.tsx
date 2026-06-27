@@ -3,8 +3,7 @@
 
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
-import { Button } from '@repo/ui/button';
-import { BlinkingDot } from '@repo/ui/BlinkingDot';
+import { Button, BlinkingDot } from '@repo/ui';
 
 interface SubsystemCardProps {
   name: string;

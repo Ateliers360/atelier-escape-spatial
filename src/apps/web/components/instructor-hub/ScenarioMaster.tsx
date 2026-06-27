@@ -3,7 +3,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@repo/ui/button';
+import { Button } from '@repo/ui';
 import { Flame, WifiOff, Zap, Wind } from 'lucide-react';
 
 const PRESETS = [

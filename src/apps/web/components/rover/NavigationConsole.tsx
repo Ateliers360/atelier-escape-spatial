@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@repo/ui/button';
+import { Button } from '@repo/ui';
 import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, CircleStop } from 'lucide-react';
 // import { io } from 'socket.io-client'; // À utiliser avec votre hook socket
 

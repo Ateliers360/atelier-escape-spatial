@@ -1,3 +1,4 @@
+// src/packages/ui/src/button.tsx
 // Bouton style cokpit, avec un effet de survol lumineux et un état "disabled" grisé.
 'use client';
 

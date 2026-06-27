@@ -28,10 +28,17 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
+
+  // 1. Récupération de la locale depuis les paramètres de l'URL
   const { locale } = await params;
 
-  // Récupération des messages i18n
+  // 2. Récupération des messages i18n
   const messages = await getMessages();
+
+  // 3. Protection anti-page blanche : vérifier si les messages existent
+  if (!messages) {
+    return <html><body>Error: Messages not found</body></html>;
+  }
 
   return (
     <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>

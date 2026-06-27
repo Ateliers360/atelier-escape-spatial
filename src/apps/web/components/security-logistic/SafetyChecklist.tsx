@@ -3,7 +3,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@repo/ui/button';
+import { Button } from '@repo/ui';
 import { CheckSquare, Square } from 'lucide-react';
 
 const CHECKS = [
